@@ -1,4 +1,4 @@
 /.DS_Store
-/stanford-ner
+/stanford-ner*
 /Gemfile.lock
 /*.tgz

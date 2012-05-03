@@ -1,16 +1,16 @@
 # Download the Stanford Named Entity Recognizer (NER)
-curl -O http://nlp.stanford.edu/software/stanford-ner-2012-04-07.tgz
-tar xvfz stanford-ner-2012-04-07.tgz
+$ curl -O http://nlp.stanford.edu/software/stanford-ner-2012-04-07.tgz
+$ tar xvfz stanford-ner-2012-04-07.tgz
 
 # Run NER as a service on port 8080:
-java -mx512m -cp stanford-ner-2012-04-07/stanford-ner.jar edu.stanford.nlp.ie.NERServer -loadClassifier stanford-ner-2012-04-07/classifiers/english.muc.7class.distsim.crf.ser.gz -port 8080 -outputFormat inlineXML &
+$ java -mx1000m -cp stanford-ner-2012-04-07/stanford-ner.jar edu.stanford.nlp.ie.NERServer -loadClassifier stanford-ner-2012-04-07/classifiers/english.muc.7class.distsim.crf.ser.gz -port 8080 -outputFormat inlineXML &
 
 # Install required gems
-bundle install
+$ bundle install
 
 # Try it
-ruby get_named_entities.rb
+$ ruby get_named_entities.rb
 
 # Optionally, pass in your own http address
-# ruby get_named_entities.rb http://[some url]
+$ ruby get_named_entities.rb http://example.com
 

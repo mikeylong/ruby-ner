@@ -12,14 +12,14 @@ entities.each_line {|line|
 }
 
 if ARGV.length != 1
-  data_url = "http://mblongii.com/collaborative-sketching"
+  data_url = "http://mblongii.com"
 else
   data_url = ARGV[0]
 end
 
 def retrieve_data(source_url)
   doc = Nokogiri::HTML( open(source_url) )
-  doc.xpath('//title','//p','//h1','//h2','//h3','//h4').text
+  doc.xpath('//title','//p','//dl','//ol','//ul','//h1','//h2','//h3').text
 end
 
 def get_named_entities(url)
@@ -29,6 +29,7 @@ def get_named_entities(url)
   while line = client.gets
     ner_data += line
   end
+  client.close_read
   for feature in ENTITIES
     entities = Hpricot(ner_data)
     output = []
