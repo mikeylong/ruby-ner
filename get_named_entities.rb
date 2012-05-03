@@ -19,7 +19,7 @@ end
 
 def retrieve_data(source_url)
   doc = Nokogiri::HTML( open(source_url) )
-  doc.xpath('//title','//p','//dl','//ol','//ul','//h1','//h2','//h3').text
+  doc.css('title','p','li','a').text
 end
 
 def get_named_entities(url)
