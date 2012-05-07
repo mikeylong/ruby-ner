@@ -12,35 +12,35 @@ entities.each_line {|line|
 }
 
 if ARGV.length != 1
-  data_url = "http://mblongii.com"
+  url = "http://mblongii.com"
 else
-  data_url = ARGV[0]
+  url = ARGV[0]
 end
 
 def retrieve_data(url)
   doc = Nokogiri::HTML( open(url) )
-  doc.css('title','p','li','a').text
+  doc.css('p','li').text
 end
 
 def get_named_entities(url)
   client = TCPSocket.open('localhost', 8080)
-  client.puts(retrieve_data(url))
-  ner_data = ""
+  client.puts( retrieve_data(url) )
+  ner_response = ""
   while line = client.gets
-    ner_data += line
+    ner_response += line
   end
   client.close_read
-  for feature in ENTITIES
-    entities = Hpricot(ner_data)
+  for type in ENTITIES
+    tagged_entities = Hpricot(ner_response)
     output = []
-    (entities/feature).each do |f|
+    (tagged_entities/type).each do |f|
       output.push f.inner_text
     end
     if output.size > 0
-      puts "#{feature.to_s.pluralize.swapcase}:"
+      puts "#{type.to_s.pluralize.swapcase}:"
       output.each {|e| puts "\t#{e}"}
     end
   end
 end
 
-get_named_entities(data_url)
+get_named_entities(url)
