@@ -18,13 +18,13 @@ else
 end
 
 def retrieve_data(url)
-  doc = Nokogiri::HTML( open(source_url) )
+  doc = Nokogiri::HTML( open(url) )
   doc.css('title','p','li','a').text
 end
 
 def get_named_entities(url)
   client = TCPSocket.open('localhost', 8080)
-  client.puts(retrieve_data(source_url))
+  client.puts(retrieve_data(url))
   ner_data = ""
   while line = client.gets
     ner_data += line
