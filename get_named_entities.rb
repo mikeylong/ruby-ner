@@ -8,7 +8,7 @@ require 'active_support/inflector'
 ENTITIES = []
 entities = File.open('ENTITIES').read
 entities.each_line {|line|
-  ENTITIES.push line.gsub(/\n/, '')
+  ENTITIES.push line.strip
 }
 
 if ARGV.length != 1
