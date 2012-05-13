@@ -24,7 +24,7 @@ end
 
 def get_named_entities(url)
   client = TCPSocket.open('localhost', 8080)
-  client.puts( retrieve_data(url) )
+  client.puts( retrieve_data(url).gsub(/\s+/, ' ') )
   ner_response = ""
   while line = client.gets
     ner_response += line
