@@ -1,6 +1,7 @@
 location
 time
 organization
+percent
 money
 person
 date
