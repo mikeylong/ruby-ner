@@ -12,7 +12,7 @@ entities.each_line {|line|
 }
 
 if ARGV.length != 1
-  url = "http://mblongii.com"
+  url = "https://en.wikipedia.org/wiki/Special:Random"
 else
   url = ARGV[0]
 end
